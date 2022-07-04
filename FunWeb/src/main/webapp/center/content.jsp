@@ -68,6 +68,24 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
 <tr><td>내용</td><td colspan="3"><%=boardDTO.getContent() %></td></tr>
 </table>
 <div id="table_search">
+<%
+//글수정 글삭제 => 로그인(세션값), 글쓴이 일치하면 글수정, 글삭제 버튼이 보이기
+String id=(String)session.getAttribute("id");
+if(id!=null){
+	if(id.equals(boardDTO.getName())){
+		%>
+		<input type="button" value="글수정" class="btn" 
+  		onclick="location.href='update.jsp?num=<%=boardDTO.getNum()%>'">
+
+		<input type="button" value="글삭제" class="btn" 
+  		onclick="location.href='delete.jsp?num=<%=boardDTO.getNum()%>'">
+		<%
+	}
+}
+
+%>
+
+
 <input type="button" value="글목록" class="btn" 
   onclick="location.href='notice.jsp'">
 </div>
