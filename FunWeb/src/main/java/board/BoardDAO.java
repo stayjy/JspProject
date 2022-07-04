@@ -96,15 +96,43 @@ public class BoardDAO {
 		}
 		return boardDTO;
 	}
-	
-	public void insertBoardDTO(BoardDTO boardDTO) {
+	//리턴값없음 insertBoard(BoardDTO boardDTO) 메서드 정의 
+	public void insertBoard(BoardDTO boardDTO) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		
+		try {
+			//1, 2 디비연결
+			con=getConnection();
+			//3sql
+			String sql="select max(num) from board";
+			pstmt=con.prepareStatement(sql);
+			//4실행결과 저장
+			rs=pstmt.executeQuery();
+			//5 
+			int num=0;
+			if(rs.next()) {
+				num=rs.getInt("max(num)")+1;
+			}
+			// 3단계 연결정보를 이용해서 sql구문을 만들기 => PreparedStatement 내장객체 준비
+			// 날짜 now()
+			sql="insert into board(num,name,pass,subject,content,readcount,date) values(?,?,?,?,?,?,now())";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, boardDTO.getName());
+			pstmt.setString(3, boardDTO.getPass());
+			pstmt.setString(4, boardDTO.getSubject());
+			pstmt.setString(5, boardDTO.getContent());
+			pstmt.setInt(6, boardDTO.getReadcount());
+			// 4단계 sql구문을 실행 (insert, update, delete)
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null)try { rs.close(); }catch(SQLException ex){}
+			if(pstmt!=null)try { pstmt.close(); }catch(SQLException ex){}
+			if(con!=null)try { con.close(); }catch(SQLException ex){}
+		}
 	}
 	
-
-	
 }//클래스
-

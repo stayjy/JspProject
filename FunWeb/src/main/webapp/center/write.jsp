@@ -51,23 +51,22 @@
 <!-- 게시판 -->
 <%
 String id=(String)session.getAttribute("id");
-if(id==null) {
+//세션값이 없으면 login.jsp 이동
+if(id==null){
 	response.sendRedirect("../member/login.jsp");
 }
-
 %>
-
 <article>
 <h1>Notice Write</h1>
-<form action="wirtePro.jsp" method="post">
+<form action="writePro.jsp" method="post">
 <input type="hidden" name="pass" value="1234">
 <table id="notice">
 <tr><td>글쓴이</td><td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
 <tr><td>제목</td><td><input type="text" name="subject"></td></tr>
-<tr><td>내용</td><td><textarea name="content" rows="10" cols="20" ></textarea></td></tr>
+<tr><td>내용</td><td><textarea name="content" rows="10" cols="20"></textarea></td></tr>
 </table>
 <div id="table_search">
-<input type="submit" value="글쓰기">
+<input type="submit" value="글쓰기" class="btn" >
 <input type="button" value="글목록" class="btn" 
   onclick="location.href='notice.jsp'">
 </div>
