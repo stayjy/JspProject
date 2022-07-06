@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 
+<jsp:include page="../inc/Top.jsp"></jsp:include>
 <article>
-<h1>Login</h1>
 <form action="loginPro.jsp" id="join" method="post">
 <fieldset>
 <legend>Login Info</legend>

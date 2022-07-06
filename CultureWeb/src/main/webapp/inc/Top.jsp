@@ -59,11 +59,11 @@
 				</ul>
 			<div id="login">
 				<button type="button" class="btn btn-outline-dark">
-					<a href="../member/Login.jsp">Login</a>
+					<a href="../member/Login.jsp" style="text-decoration: none;">Login</a>		<!-- 부트스트랩 우선순위 style 인라인 태그 적용  -->
 				</button>
 				&nbsp;
 				<button type="button" class="btn btn-outline-dark">
-					<a href="../member/Join.jsp">Join</a>
+					<a href="../member/Join.jsp" style="text-decoration: none;">Join</a>		<!-- 부트스트랩 우선순위 style 인라인 태그 적용  -->
 				</button>
 			</div>
 			</div>
