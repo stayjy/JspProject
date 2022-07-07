@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../inc/Top.jsp"></jsp:include>
+<div id="form">
 <article>
 <h1>Join Us</h1>
 <form action="JoinPro.jsp" id="join" method="post">
@@ -52,5 +55,6 @@
 </div>
 </form>
 </article>
+</div>
 </body>
 </html>

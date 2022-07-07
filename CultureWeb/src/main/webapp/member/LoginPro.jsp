@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>member/LoginPro.jsp</title>
 </head>
 <body>
 <%
