@@ -23,7 +23,7 @@ public class BoardDAO {
 	}
 	
 	// 리턴할형 List   getBoardList() 메서드 정의
-	public List getBoardList() {
+	public List getBoardList(int startRow, int pageSize) {
 		// 여러명을 저장할 변수 => 자바API 배열 변수
 		List boardList=new ArrayList();
 		Connection con=null;
@@ -33,8 +33,10 @@ public class BoardDAO {
 			//1, 2 디비연결 메서드 호출
 			con=getConnection();
 			// 3단계 연결정보를 이용해서 sql구문을 만들기 => PreparedStatement 내장객체 준비
-			String sql="select * from board order by num desc";
+			String sql="select * from board order by num desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
 			// 4단계 sql구문을 실행=> 실행 결과 저장(select) 
 			//=> sql구문을 실행한 결과 저장하는 내장객체 ResultSet
 			rs=pstmt.executeQuery();
@@ -183,6 +185,36 @@ public class BoardDAO {
 			if(con!=null)try { con.close(); }catch(SQLException ex){}
 		}
 	}
+	
+	public int getBoardCount() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			con=getConnection();
+			//3sql
+			String sql="select count(*) from board";
+			pstmt=con.prepareStatement(sql);
+			//4실행결과 저장
+			rs=pstmt.executeQuery();
+			// 5 다음행으로 이동 데이터 있으면 열 접근
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)try { rs.close(); }catch(SQLException ex){}
+			if(pstmt!=null)try { pstmt.close(); }catch(SQLException ex){}
+			if(con!=null)try { con.close(); }catch(SQLException ex){}
+		}
+		
+		return count;
+	}
+	
+
+
 	
 	
 	

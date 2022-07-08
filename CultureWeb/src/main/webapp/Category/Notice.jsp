@@ -8,26 +8,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MovieAc.jsp</title>
+<title>Insert title here</title>
 </head>
-<body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
-
+<body>
 <%
 BoardDAO boardDAO=new BoardDAO();
-//한페이지 보여줄(가져올) 글개수 설정
-int pageSize=3;
 
+int pageSize=3;
 
 String pageNum=request.getParameter("pageNum");
 if(pageNum==null) {
 	pageNum="1";
 }
+
 int currentPage=Integer.parseInt(pageNum);
 
 int startRow=(currentPage-1)*pageSize+1;
-
 int endRow=startRow+pageSize-1;
+
 List boardList=boardDAO.getBoardList(startRow, pageSize);
 %>
 <article>
@@ -41,6 +40,7 @@ List boardList=boardDAO.getBoardList(startRow, pageSize);
    <%
    //날짜 => 문자열 모양변경
    SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+   
    for(int i=0;i<boardList.size();i++){
 	   BoardDTO boardDTO=(BoardDTO)boardList.get(i);
 	   %>
@@ -54,7 +54,7 @@ List boardList=boardDAO.getBoardList(startRow, pageSize);
    }
    %> 
 </table>
-<div id="table_search">
+ <div id="table_search">
 <input type="text" name="search" class="input_box">
 <input type="button" value="search" class="btn">
 </div>
@@ -66,57 +66,27 @@ String id=(String)session.getAttribute("id");
 if(id!=null) {
 	%>
 <input type="button" value="글쓰기" class="btn" 
-  onclick="location.href='MovieAcWrite.jsp'">
+  onclick="location.href='write.jsp'">
 	<%
 }
 %>
 
 </div>
 <div class="clear"></div>
-<%
-//한페이지에 보여줄 페이지개수 설정
-int pageBlock=3;
 
-int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-
-int endPage=startPage+pageBlock-1;
-
-int count=boardDAO.getBoardCount();
-
-
-int pageCount=count / pageSize +(count%pageSize==0?0:1);
-// 페이지 10페이지 안될경우
-if(endPage > pageCount) {
-	endPage=pageCount;	
-}
-
-%>
-
-<%
-if(startPage > pageBlock) {
-%>
-	<a href="MovieAc.jsp?pageNum=<%=startPage-pageBlock%>">Prev</a>
-<%
-	
-}
-
-for(int i=startPage; i<=endPage; i++) {
-%>
-	<a href="MovieAc.jsp?pageNum=<%=i%>"><%=i%></a>	
-	<% 
-}
-
-if(endPage < pageCount) {
-	%>
-	<a href="MovieAc.jsp?pageNum=<%=startPage+pageBlock%>">Next</a>
-	<%	
-}
-%>
-
-</div>
-</article>
-<!-- 게시판 -->
-<!-- 본문들어가는 곳 -->
-<div class="clear"></div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 </body>
 </html>
