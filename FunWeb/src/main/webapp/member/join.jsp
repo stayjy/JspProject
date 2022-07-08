@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
 <!--[if lt IE 9]>
@@ -21,6 +23,8 @@
 
  </script>
  <![endif]-->
+ 
+ 
 </head>
 <body>
 <div id="wrap">

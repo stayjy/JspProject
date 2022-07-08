@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>center/write.jsp</title>
+<title>center/fwrite.jsp</title>
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
 <!--[if lt IE 9]>
@@ -57,12 +57,13 @@ if(id==null){
 }
 %>
 <article>
-<h1>Notice Write</h1>
-<form action="writePro.jsp" method="post">
+<h1>File Notice Write</h1>
+<form action="fwritePro.jsp" method="post" enctype="multipart/form-data">
 <input type="hidden" name="pass" value="1234">
 <table id="notice">
 <tr><td>글쓴이</td><td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
 <tr><td>제목</td><td><input type="text" name="subject"></td></tr>
+<tr><td>파일</td><td><input type="file" name="file"></td></tr>
 <tr><td>내용</td><td><textarea name="content" rows="20" cols="40"></textarea></td></tr>
 </table>
 <div id="table_search">
