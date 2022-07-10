@@ -9,9 +9,19 @@
 <head>
 <meta charset="UTF-8">
 <title>MovieAc.jsp</title>
+<style type="text/css">
+
+article table#notice{width: 800px;
+border-collapse: collapse;}
+
+
+</style>
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
+
+
+
 
 <%
 BoardDAO boardDAO=new BoardDAO();
@@ -31,7 +41,7 @@ int endRow=startRow+pageSize-1;
 List boardList=boardDAO.getBoardList(startRow, pageSize);
 %>
 <article>
-<h1>Notice</h1>
+<h1>게시판</h1>
 <table id="notice">
 <tr><th class="tno">No.</th>
     <th class="ttitle">Title</th>

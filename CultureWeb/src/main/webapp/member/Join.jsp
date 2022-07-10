@@ -38,7 +38,24 @@
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
     
+    input {   
+  display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     
+    }
   </style>
 </head>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
@@ -72,43 +89,44 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="address">주소</label> <br> <input type="text"
-							name="zipcode" class="postcodify_postcode5" value="" />
-						<button type="button" id="postcodify_search_button"
-							class="btn btn-outline-secondary">search</button>
-						<br /> <input type="text" name="zipcode" class="form-control"
-							placeholder="서울특별시 강남구" required>
-						<div class="invalid-feedback">주소를 입력해주세요.</div>
+						<label>우편번호 <button type="button" id="postcodify_search_button"
+								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button></label> 
+						 <input type="text" name="zipcode" class="postcodify_postcode5" value="" />
+							
+							
+						
+						<label>주소</label> 
+						<input type="text" name="address" class="postcodify_address" value="" />
+						
+						<label>상세 주소</label>
+						<input type="text" name="address_detail" class="postcodify_details" value="" />
+						
 					</div>
 
-					<div class="mb-3">
-						<label for="address2">상세주소<span class="text-muted">&nbsp;(필수
-								아님)</span></label> <input type="text" class="form-control"
-							name="address_detail" placeholder="상세주소를 입력해주세요.">
-					</div>
-					<hr class="mb-4">
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="aggrement"
-					required> <label class="custom-control-label"
-					for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-			</div>
-			<div class="mb-4"></div>
-			<button class="btn btn-outline-secondary btn-lg btn-block" type="submit">가입완료
-			
-				</button>
 
+						<hr class="mb-4">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								id="aggrement" required> <label
+								class="custom-control-label" for="aggrement">개인정보 수집 및
+								이용에 동의합니다.</label>
+						</div>
+						<div class="mb-4"></div>
+						<button class="btn btn-outline-secondary btn-lg btn-block"
+							type="submit">가입완료</button>
+
+					</div>
+
+				</form>
 			</div>
-			
-		</form>
-	</div>
 	</div>
 	</form>
 	<!--  <footer class="my-3 text-center text-small">
       <p class="mb-1">&copy; 2021 YD</p>
     </footer>
   </div> -->
-  
-  <script>
+
+	<script>
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
 

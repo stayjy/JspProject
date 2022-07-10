@@ -17,6 +17,8 @@ if(id==null){
 	response.sendRedirect("../member/Login.jsp");
 }
 %>
+
+<h2> 게시글 쓰기</h2>
 <form action="MovieAcWritePro.jsp" method="post">
 <input type="hidden" name="pass" value="1234">
 <table id="notice">
