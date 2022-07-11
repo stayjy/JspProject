@@ -19,11 +19,9 @@ String email=request.getParameter("email");
 String address=request.getParameter("address");
 String phone=request.getParameter("phone");
 String mobile=request.getParameter("mobile");
-
 MemberDAO memberDAO=new MemberDAO();
 //MemberDTO memberDTO  = userCheck(id,pass) 메서드 호출
 MemberDTO memberDTO=memberDAO.userCheck(id, pass);
-
 
 if(memberDTO !=null){
 	MemberDTO updateDTO=new MemberDTO();
@@ -36,18 +34,21 @@ if(memberDTO !=null){
 	updateDTO.setMobile(mobile);
 	
 	memberDAO.updateMember(updateDTO);
-	response.sendRedirect("../main/Main.jsp");
+	%>
+	<script type="text/javascript">
+		alert("수정이 완료 되었습니다.");
+		location.href="../main/Main.jsp";
+	</script>
+	<%
+	
 }else{
 	%>
 	<script type="text/javascript">
-		alert("아이디 비밀번호 틀림");
+	alert("아이디 비밀번호 틀림");
 		history.back();
 	</script>
 	<%
 }
-
-
-
 %>
 
 

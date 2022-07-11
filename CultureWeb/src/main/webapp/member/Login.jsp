@@ -5,24 +5,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <style>
+  /*   body {
+      min-height: 100vh;
 
+	 background: -webkit-gradient(linear, left bottom, right top);
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%); 
+    } */
 
+    .input-form {
+      max-width: 680px;
+      margin-top: 80px;
+      padding: 32px;
 
-<!-- 출처: https://7942yongdae.tistory.com/86 [프로그래머 YD:티스토리] -->
-<!--[if lt IE 9]>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" type="text/javascript"></script>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/ie7-squish.js" type="text/javascript"></script>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-<![endif]-->
-<!--[if IE 6]>
- <script src="../script/DD_belatedPNG_0.0.8a.js"></script>
- <script>
-   /* EXAMPLE */
-   DD_belatedPNG.fix('#wrap');
-   DD_belatedPNG.fix('#main_img');   
-
- </script>
- <![endif]-->
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+    }
+    
+    input {   
+  display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    
+  </style>
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
@@ -48,8 +74,10 @@
               </div>
             </div>
           </div>
-          <input type="submit" value="Submit" class="btn btn-outline-dark">
-		  <input type="reset" value="Cancel" class="btn btn-outline-dark">
+          <div class="bt_form">
+          <input type="submit" value="Submit" class="btn btn-outline-dark" style="margin-bottom: 3px;"> <br>
+		  <input type="reset" value="Cancel" class="btn btn-outline-dark" >
+          </div>
           </form>
 <!-- <form action="LoginPro.jsp" id="join" method="post">
 <fieldset>
