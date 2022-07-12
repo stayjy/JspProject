@@ -10,34 +10,38 @@
 <meta charset="UTF-8">
 
 <style type="text/css">
-#sub_menu{width: 238px; float: left;margin: 20px;
-font-family:Verdana,Geneva,sans-serif;font-size:1em  }
 
-ul{float: left; margin: 20px 0 0 10px; list-style: none;
-}/*밖여백 20 0 0 10 리스트스타일none*/
-#sub_menu a{text-decoration: none;color: #666;
-display:block;height: 15px;width: 150px;padding: 7px;
-border-bottom-width: 1px;border-bottom-style: dotted;
-border-bottom-color: #999;
-background-image: url("../images/bullet.gif");
-background-repeat: no-repeat;
-background-position: right center;}
-/*밑줄 none 글자색 #666
-높이 15px 너비150px 안여백7px
-테두리 아래너비 1px 테두리아래스타일 dotted 
-테두리아래색 #999 배경이미지 images/bullet.gif
-반복no 위치right center*/
+#sub_menu {float: left;
+border: 1px solid;
+	
+}
 
-article{float: right;width: 670px;
-padding-right: 30px;
+article{float: right;width: 90%;
+
 font-family: Verdana,Geneva,sans-serif;
 font-size: 1em;line-height: 1.5em}
-
-#notice {
+ 
+/* #notice {
 border: 1px solid;
 }
+
 article table#notice{width: 670px;
-border-collapse: collapse;}
+ border: 1px solid;
+}
+
+article table#notice th {
+border: 1px solid;
+
+}
+
+article table#notice td {
+border: 1px solid;
+border-style: dotted;
+} */
+
+#table_search>input {
+ margin-top: 3px;
+}
 
 </style>
 </head>
@@ -51,8 +55,8 @@ border-collapse: collapse;}
 <li><a href="#">Service Policy</a></li>
 </ul>
 </nav> -->
-
-<ul class="nav flex-column">
+<div id="sub_menu">
+<ul class="nav flex-column" >
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="#">Active</a>
   </li>
@@ -66,10 +70,12 @@ border-collapse: collapse;}
     <a class="nav-link disabled">Disabled</a>
   </li>
 </ul>
+</div>
+
 	<%
 	BoardDAO boardDAO = new BoardDAO();
 	//한페이지 보여줄(가져올) 글개수 설정
-	int pageSize = 3;
+	int pageSize = 10;
 
 	String pageNum = request.getParameter("pageNum");
 	if (pageNum == null) {
@@ -84,14 +90,17 @@ border-collapse: collapse;}
 	%>
 	<article>
 		<h1>게시판</h1>
-		<table id="notice">
+		<table class="table">
+		  <thead>
 			<tr>
-				<th class="tno">No.</th>
-				<th class="ttitle">Title</th>
-				<th class="twrite">Writer</th>
-				<th class="tdate">Date</th>
-				<th class="tread">Read</th>
+				<th scope="col">No.</th>
+				<th scope="col">Title</th>
+				<th scope="col">Writer</th>
+				<th scope="col">Date</th>
+				<th scope="col">Read</th>
 			</tr>
+			</thead>
+  			<tbody>
 			<%
 			//날짜 => 문자열 모양변경
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
@@ -109,11 +118,10 @@ border-collapse: collapse;}
 			}
 			%>
 		</table>
+
 		<div id="table_search">
-			<input type="text" name="search" class="input_box"> <input
-				type="button" value="search" class="btn btn-outline-primary">
-		</div>
-		<div id="table_search">
+			<input type="text" name="search" class="input_box"> 
+			<input type="button" value="검색" class="btn btn-outline-primary">
 			<%
 			//세션값 가져오기
 			String id = (String) session.getAttribute("id");

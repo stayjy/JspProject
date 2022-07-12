@@ -47,6 +47,61 @@
     
     }
   </style>
+  <script type="text/javascript">
+	function checkPass(pass){
+		// 패스워드 검사를 위한 정규표현식 패턴 작성 및 검사 결과에 따른 변수값 변경
+		var spanElem = document.getElementById("checkPassResult");
+		
+		// 정규표현식 패턴 정의
+		var lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/; // 길이 및 사용 가능 문자 규칙
+		var engUpperRegex = /[A-Z]/;	// 대문자
+		var engLowerRegex = /[a-z]/;	// 소문자
+		var numRegex = /[0-9]/;		// 숫자 규칙
+		var specRegex = /[!@#$%]/;	// 특수문자 규칙
+		
+		var count = 0;	// 각 규칙별 검사 결과를 카운팅 할 변수
+		
+		if(lengthRegex.exec(pass)){	// 패스워드 길이 및 사용 가능 문자 규칙 통과 시
+			spanElem.innerHTML = "사용 가능한 패스워드";
+			spanElem.style.color = "GREEN";
+			
+			// 각 규칙별 검사 후 해당 항목이 포함되어 있을 경우 카운트 증가
+			if(engUpperRegex.exec(pass)) count++;
+			if(engLowerRegex.exec(pass)) count++;
+			if(numRegex.exec(pass)) count++;
+			if(specRegex.exec(pass)) count++;
+			
+			switch (count) {
+			case 4:	//특수문자, 대문자, 소문자, 숫자 중 4개를 만족
+				spanElem.innerHTML ="사용 가능한 패스워드(안전)";
+				spanElem.style.color = "GREEN";
+				checkPassResult = true;
+				break;
+			case 3: //특수문자, 대문자, 소문자, 숫자 중 3개를 만족
+				spanElem.innerHTML ="사용 가능한 패스워드(보통)";
+				spanElem.style.color = "YELLOW";
+				checkPassResult = true;
+				break;
+			case 2: //특수문자, 대문자, 소문자, 숫자 중 2개를 만족
+				spanElem.innerHTML ="사용 가능한 패스워드(위험)";
+				spanElem.style.color = "ORANGE";
+				checkPassResult = true;
+				break;
+			default: 
+				spanElem.innerHTML ="영문자, 숫자, 특수문자 중 2가지 이상 조합 필수!";
+				spanElem.style.color = "RED";
+				checkPassResult = false;
+			}
+		} else {
+			//spanElem.innerHTML = "사용 불가능한 패스워드";
+			spanElem.innerHTML = "영문자, 숫자, 특수문자 조합 8 ~ 16자리 필수";
+			spanElem.style.color = "RED";
+			checkPassResult = false;
+		}
+		
+	}
+  
+  </script>
 </head>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
 
@@ -65,8 +120,8 @@
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="nickname">비밀번호</label> <input type="password"
-								class="form-control" name="pass" placeholder="" value=""
-								required>
+								class="form-control" name="pass" onkeyup="checkPass(this.value)" required>
+								<span id="checkPassResult"><!-- 패스워드 규칙 판별 결과 표시 영역 --></span><br>
 							<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 						</div>
 					</div>
@@ -79,36 +134,31 @@
 					</div>
 
 					<div class="mb-3">
-						<label>우편번호 <button type="button" id="postcodify_search_button"
-								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button></label> 
-						 <input type="text" name="zipcode" class="postcodify_postcode5" value="" />
-							
-							
-						
-						<label>주소</label> 
-						<input type="text" name="address" class="postcodify_address" value="" />
-						
-						<label>상세 주소</label>
-						<input type="text" name="address_detail" class="postcodify_details" value="" />
-						
-					</div>
-
-
-						<hr class="mb-4">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input"
-								id="aggrement" required> <label
-								class="custom-control-label" for="aggrement">개인정보 수집 및
-								이용에 동의합니다.</label>
-						</div>
-						<div class="mb-4"></div>
-						<button class="btn btn-outline-secondary btn-lg btn-block"
-							type="submit">가입완료</button>
+						<label>우편번호
+							<button type="button" id="postcodify_search_button"
+								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button>
+						</label> <input type="text" name="zipcode" class="postcodify_postcode5"
+							value="" /> <label>주소</label> <input type="text" name="address"
+							class="postcodify_address" value="" /> <label>상세 주소</label> <input
+							type="text" name="address_detail" class="postcodify_details"
+							value="" />
 
 					</div>
 
-				</form>
+
+					<hr class="mb-4">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="aggrement"
+							required> <label class="custom-control-label"
+							for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+					</div>
+					<div class="mb-4"></div>
+					<button class="btn btn-outline-secondary btn-lg btn-block"
+						type="submit">가입완료</button>
 			</div>
+
+		</form>
+	</div>
 	</div>
 	</form>
 	<!--  <footer class="my-3 text-center text-small">
