@@ -20,28 +20,18 @@ How many a man has dated a new era in his life from the reading of a book. <br>
 by Henry David Thoreau. </p>
 <button>WATCH MORE</button>
 </div>
+</div> 
+<!-- <section class="wrapper">
+<img alt="" src="../img/m_Intern.jpg">
+<div class="sec_movie">
+액션/스릴러/로맨스 다양한 장르의 후기를 통해<br>
+취향에 맞는 영화를 찾을 수 있습니다.
 </div>
-<!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner" >
-    <div class="carousel-item active" >
-      <img src="../img/m1.jpg" class="d-block w-100" alt="..." >
-    </div>
-    <div class="carousel-item">
-      <img src="../img/m2.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="../img/m4.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+</section>
+
+<section></section>
+<section></section>
+
  -->
 </body>
 </html>

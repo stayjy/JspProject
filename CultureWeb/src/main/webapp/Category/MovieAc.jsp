@@ -8,40 +8,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <style type="text/css">
 
-#sub_menu {float: left;
-border: 1px solid;
-	
+#sub_menu {
+float: left;
+padding: 20px 20px 50px 0;
+margin-top: 10%;
 }
 
-article{float: right;width: 90%;
+#sub_menu .nav-item {
+font-weight: bold;
+; }
 
+article{
+float: right; width: 90%;
+
+padding-top: 20px;
+padding-right: 10px;
 font-family: Verdana,Geneva,sans-serif;
 font-size: 1em;line-height: 1.5em}
+
+.table_bar {
+background-color: #6495ED ;
+}
+
+article th.tno{
+border-top-left-radius:5px;
+border-bottom-left-radius:5px;
+width:50px;}
+
+article th.ttitle {
+width: 300px;}
+
+article th.twrite {
+width: 50px;}
+
+article th.tdate {
+width: 50px;}
+
+article th.tread {
+border-top-right-radius:5px;
+border-bottom-right-radius:5px;
+width: 50px;}
  
-/* #notice {
-border: 1px solid;
-}
-
-article table#notice{width: 670px;
- border: 1px solid;
-}
-
-article table#notice th {
-border: 1px solid;
-
-}
-
-article table#notice td {
-border: 1px solid;
-border-style: dotted;
-} */
-
 #table_search>input {
- margin-top: 3px;
-}
+ margin-top: 3px;}
+
+
 
 </style>
 </head>
@@ -66,9 +79,7 @@ border-style: dotted;
   <li class="nav-item">
     <a class="nav-link" href="#">Link</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>
+
 </ul>
 </div>
 
@@ -91,13 +102,13 @@ border-style: dotted;
 	<article>
 		<h1>게시판</h1>
 		<table class="table">
-		  <thead>
+		  <thead class="table_bar">
 			<tr>
-				<th scope="col">No.</th>
-				<th scope="col">Title</th>
-				<th scope="col">Writer</th>
-				<th scope="col">Date</th>
-				<th scope="col">Read</th>
+				<th scope="col" class="tno">No.</th>
+				<th scope="col" class="ttitle">Title</th>
+				<th scope="col" class="twrite">Writer</th>
+				<th scope="col" class="tdate">Date</th>
+				<th scope="col" class="tread">Read</th>
 			</tr>
 			</thead>
   			<tbody>

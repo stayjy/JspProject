@@ -93,17 +93,14 @@ MemberDTO memberDTO=memberDAO.getMember(id);
 					</div>
 
 					<div class="mb-3">
-						<label>우편번호 <button type="button" id="postcodify_search_button"
-								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button></label> 
-						 <input type="text" name="zipcode" class="postcodify_postcode5" value="" />
-							
-							
-						
-						<label>주소</label> 
-						<input type="text" name="address" class="postcodify_address" value="<%=memberDTO.getAddress()%>" />
-						
-						<label>상세 주소</label>
-						<input type="text" name="address_detail" class="postcodify_details" value="" />
+						<label>우편번호
+							<button type="button" id="postcodify_search_button"
+								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button>
+						</label> <input type="text" name="zipcode" class="postcodify_postcode5"
+							value="" /> <label>주소</label> <input type="text" name="address"
+							class="postcodify_address" value="" /> <label>상세 주소</label> <input
+							type="text" name="address_detail" class="postcodify_details"
+							value="" />
 						
 					</div>
 						<hr class="mb-4">
@@ -117,5 +114,26 @@ MemberDTO memberDTO=memberDAO.getMember(id);
 	</form>
 
 
+	<script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  </script>
+
+
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 </html>
