@@ -48,6 +48,15 @@
     }
   </style>
   <script type="text/javascript">
+  
+  var checkIdResult = true; // 아이디 중복확인 여부
+  var checkPassResult = false; // 패스워드 검사
+  var checkRetypePassReulst = false; // 패스워드 확인 결과
+  
+  
+  
+  
+	// 패스워드 보안강도 검사  
 	function checkPass(pass){
 		// 패스워드 검사를 위한 정규표현식 패턴 작성 및 검사 결과에 따른 변수값 변경
 		var spanElem = document.getElementById("checkPassResult");
@@ -79,7 +88,7 @@
 				break;
 			case 3: //특수문자, 대문자, 소문자, 숫자 중 3개를 만족
 				spanElem.innerHTML ="사용 가능한 패스워드(보통)";
-				spanElem.style.color = "YELLOW";
+				spanElem.style.color = "GRAY";
 				checkPassResult = true;
 				break;
 			case 2: //특수문자, 대문자, 소문자, 숫자 중 2개를 만족
@@ -101,6 +110,43 @@
 		
 	}
   
+ 	// 패스워드 일치 여부 검사
+ 	function checkRetypePass(pass2) {
+		debugger;
+		var pass = document.fr.pass.value;
+		var spanElem = document.getElementById("checkRetypePassResult");
+		if(pass == pass2){	// 패스워드 일치
+			spanElem.innerHTML = "패스워드 일치";
+			spanElem.style.color = "GREEN";
+			checkRetypePassResult = true
+		} else {	// 패스워드 불일치
+			spanElem.innerHTML = "패스워드 불일치";
+			spanElem.style.color = "RED"
+				checkRetypePassResult = false;
+		}
+		
+	}
+  
+	function checkSubmit(){
+		
+		if(!checkIdResult){
+			alert("아이디 중복확인 필수!");
+			document.fr.id.focus();
+			return false;
+		} else if(!checkPassResult){
+			alert("올바른 패스워드 입력 필수!");
+			document.fr.pass.focus();
+			return false;
+		} else if(!checkRetypePassResult){
+			alert("패스워드 확인 필수!");
+			document.fr.pass2.focus();
+			return false;
+		}
+		
+//		return true;
+	}
+  
+  
   </script>
 </head>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
@@ -108,12 +154,12 @@
 <body>
 	<div class="container">
 
-		<form action="JoinPro.jsp" id="join" method="post">
+		<form action="JoinPro.jsp" id="join" method="post" name="fr" onsubmit="return checkSubmit()">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>
 				<form class="validation-form" novalidate>
 					<div class="row">
-						<div class="col-md-6 mb-3">
+						<div class="mb-3">
 							<label for="name">아이디</label> <input type="text"
 								class="form-control" name="id" placeholder="" value="" required>
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
@@ -124,8 +170,13 @@
 								<span id="checkPassResult"><!-- 패스워드 규칙 판별 결과 표시 영역 --></span><br>
 							<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 						</div>
+						<div class="col-md-6 mb-3">
+							<label for="nickname">비밀번호 확인</label> <input type="password"
+								class="form-control" name="pass2" onblur="checkRetypePass(this.value)" required>
+								<span id="checkRetypePassResult"><!-- 패스워드 일치 여부 표시 영역 --></span><br>
+							<div class="invalid-feedback">비밀번호를 재입력해주세요.</div>
+						
 					</div>
-
 					<div class="mb-3">
 						<label for="email">이메일</label> <input type="email"
 							class="form-control" name="email" placeholder="you@example.com"

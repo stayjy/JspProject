@@ -17,10 +17,10 @@
     } */
 
     .input-form {
-      max-width: 680px;
+      max-width: 600px;
       margin-top: 80px;
       padding: 32px;
-
+	
       background: #fff;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
@@ -48,6 +48,7 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
     
+ 
   </style>
 </head>
 <body>
@@ -59,24 +60,24 @@
         <h4 class="mb-3">로그인</h4>
         <form class="validation-form" novalidate>
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="mb-3">
               <label for="name">아이디</label>
               <input type="text" class="form-control" name="id" placeholder="" value="" required>
               <div class="invalid-feedback">
                 아이디를 입력해주세요.
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="mb-3">
               <label for="nickname">비밀번호</label>
               <input type="password" class="form-control" name="pass" placeholder="" value="" required>
               <div class="invalid-feedback">
                 패스워드를 입력해주세요.
               </div>
             </div>
-          </div>
+          </div> 
           <div class="bt_form">
-          <input type="submit" value="Submit" class="btn btn-outline-dark" style="margin-bottom: 3px;"> <br>
-		  <input type="reset" value="Cancel" class="btn btn-outline-dark" >
+          <input type="submit" value="Submit"  class="btn btn-outline-dark" style="margin-bottom: 3px;">
+		  <input type="reset" value="Cancel"  class="btn btn-outline-dark" >
           </div>
           </form>
 <!-- <form action="LoginPro.jsp" id="join" method="post">
