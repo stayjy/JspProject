@@ -259,5 +259,39 @@ public class MemberDAO {
 		return memberList;		
 	}
 	
+	public int joinIdCheck(String id) {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		int result = -1;
+		
+		try {
+			
+			con=getConnection();
+			String sql = "select id from members where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 0;
+			} else {
+				result = 1;
+			}
+			
+			System.out.println("아이디 중복체크 결과: " + result);
+						
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null)try { rs.close(); }catch(SQLException ex){}
+			if(pstmt!=null)try { pstmt.close(); }catch(SQLException ex){}
+			if(con!=null)try { con.close(); }catch(SQLException ex){}
+		}
+			return result;
+	}
+	
 }//클래스
 

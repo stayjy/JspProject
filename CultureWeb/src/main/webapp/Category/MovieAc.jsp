@@ -118,7 +118,7 @@ width: 50px;}
 			for (int i = 0; i < boardList.size(); i++) {
 				BoardDTO boardDTO = (BoardDTO) boardList.get(i);
 			%>
-			<tr onclick="location.href='content.jsp?num=<%=boardDTO.getNum()%>'">
+			<tr onclick="location.href='Content.jsp?num=<%=boardDTO.getNum()%>'">
 				<td><%=boardDTO.getNum()%></td>
 				<td class="left"><%=boardDTO.getSubject()%></td>
 				<td><%=boardDTO.getName()%></td>

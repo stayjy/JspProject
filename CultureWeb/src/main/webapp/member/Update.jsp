@@ -98,7 +98,7 @@ MemberDTO memberDTO=memberDAO.getMember(id);
 								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button>
 						</label> <input type="text" name="zipcode" class="postcodify_postcode5"
 							value="" /> <label>주소</label> <input type="text" name="address"
-							class="postcodify_address" value="" /> <label>상세 주소</label> <input
+							class="postcodify_address" value="<%=memberDTO.getAddress()%>"> <label>상세 주소</label> <input
 							type="text" name="address_detail" class="postcodify_details"
 							value="" />
 						

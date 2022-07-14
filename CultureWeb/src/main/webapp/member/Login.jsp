@@ -22,6 +22,8 @@
       padding: 32px;
 	
       background: #fff;
+      \
+      
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       border-radius: 10px;

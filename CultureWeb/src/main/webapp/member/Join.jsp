@@ -29,7 +29,7 @@
     }
     
     input {   
-  display: block;
+  	display: block;
     width: 100%;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
@@ -52,9 +52,20 @@
   var checkIdResult = true; // 아이디 중복확인 여부
   var checkPassResult = false; // 패스워드 검사
   var checkRetypePassReulst = false; // 패스워드 확인 결과
-  
-  
-  
+  //아이디 중복확인 여부
+  function winopen(){
+ 	  
+ 	//새창을 열어서 페이지를 오픈 후 -> 회원아이디정보를 가지고 중복체크
+ 	//1. 아이디가 없으면 알림창과 진행x
+ 	if(document.fr.id.value =="" || document.fr.id.value.length < 0){
+ 		alert("아이디를 먼저 입력해주세요")
+ 		document.fr.id.focus();
+ 	}else{
+ 		//2. 회원정보아이디를 가지고 있는 지 체크하려면 DB에 접근해야한다.
+ 		//자바스크립트로 어떻게 DB에 접근할까? => 파라미터로 id값을 가져가서 jsp페이지에서 진행하면 된다.
+ 		window.open("JoinIdCheck.jsp?id="+document.fr.id.value,"","width=500, height=300");
+ 	}
+ }
   
 	// 패스워드 보안강도 검사  
 	function checkPass(pass){
@@ -112,7 +123,7 @@
   
  	// 패스워드 일치 여부 검사
  	function checkRetypePass(pass2) {
-		debugger;
+		
 		var pass = document.fr.pass.value;
 		var spanElem = document.getElementById("checkRetypePassResult");
 		if(pass == pass2){	// 패스워드 일치
@@ -145,7 +156,7 @@
 		
 //		return true;
 	}
-  
+   
   
   </script>
 </head>
@@ -154,64 +165,55 @@
 <body>
 	<div class="container">
 
-		<form action="JoinPro.jsp" id="join" method="post" name="fr" onsubmit="return checkSubmit()">
+		<form action="JoinPro.jsp" id="join" method="post" name="fr" > <!-- onsubmit="return checkSubmit()" -->
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>
-				<form class="validation-form" novalidate>
+				<!-- <form class="validation-form" novalidate> -->
 					<div class="row">
 						<div class="mb-3">
-							<label for="name">아이디</label> <input type="text"
-								class="form-control" name="id" placeholder="" value="" required>
+							<label for="name">아이디</label>
+							<input type="text" class="form-control" name="id" placeholder="" value="" required> <br>
+							<input type="button" value="중복확인" style="padding: 4px 6px;" class="btn btn-outline-secondary" onclick="winopen()"><br>
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="nickname">비밀번호</label> <input type="password"
-								class="form-control" name="pass" onkeyup="checkPass(this.value)" required>
-								<span id="checkPassResult"><!-- 패스워드 규칙 판별 결과 표시 영역 --></span><br>
+							<label for="nickname">비밀번호</label>
+							<input type="password" class="form-control" name="pass" onkeyup="checkPass(this.value)" required>
+							<span id="checkPassResult"><!-- 패스워드 규칙 판별 결과 표시 영역 --></span><br>
 							<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="nickname">비밀번호 확인</label> <input type="password"
-								class="form-control" name="pass2" onblur="checkRetypePass(this.value)" required>
-								<span id="checkRetypePassResult"><!-- 패스워드 일치 여부 표시 영역 --></span><br>
+							<label for="nickname">비밀번호 확인</label>
+							<input type="password" class="form-control" name="pass2" onblur="checkRetypePass(this.value)" required>
+							<span id="checkRetypePassResult"><!-- 패스워드 일치 여부 표시 영역 --></span><br>
 							<div class="invalid-feedback">비밀번호를 재입력해주세요.</div>
-						
+					   	</div>
+					   	<div class="mb-3">
+							<label for="email">이메일</label>
+							<input type="email" class="form-control" name="email" placeholder="you@example.com" required>
+							<div class="invalid-feedback">이메일을 입력해주세요.</div>
+						</div>
+						<div class="mb-3">
+							<label>우편번호
+							<button type="button" id="postcodify_search_button" style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button>
+							</label> 
+							<input type="text" name="zipcode" class="postcodify_postcode5" value="" />
+							<label>주소</label> <input type="text" name="address" class="postcodify_address" value="" />
+							<label>상세 주소</label> <input type="text" name="address_detail" class="postcodify_details" value="" />
+						</div>
+						<hr class="mb-4">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="aggrement" required>
+							<label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+						</div>
+						<div class="mb-4"></div>
+							<button class="btn btn-outline-secondary btn-lg btn-block" type="submit">가입완료</button>
+						</div>
+
+		<!-- </form> -->
 					</div>
-					<div class="mb-3">
-						<label for="email">이메일</label> <input type="email"
-							class="form-control" name="email" placeholder="you@example.com"
-							required>
-						<div class="invalid-feedback">이메일을 입력해주세요.</div>
-					</div>
-
-					<div class="mb-3">
-						<label>우편번호
-							<button type="button" id="postcodify_search_button"
-								style="padding: 4px 6px;" class="btn btn-outline-secondary">검색</button>
-						</label> <input type="text" name="zipcode" class="postcodify_postcode5"
-							value="" /> <label>주소</label> <input type="text" name="address"
-							class="postcodify_address" value="" /> <label>상세 주소</label> <input
-							type="text" name="address_detail" class="postcodify_details"
-							value="" />
-
-					</div>
-
-
-					<hr class="mb-4">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="aggrement"
-							required> <label class="custom-control-label"
-							for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-					</div>
-					<div class="mb-4"></div>
-					<button class="btn btn-outline-secondary btn-lg btn-block"
-						type="submit">가입완료</button>
-			</div>
-
+				</div>
 		</form>
-	</div>
-	</div>
-	</form>
 	<!--  <footer class="my-3 text-center text-small">
       <p class="mb-1">&copy; 2021 YD</p>
     </footer>
