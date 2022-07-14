@@ -44,7 +44,7 @@ if(memberDTO !=null){
 }else{
 	%>
 	<script type="text/javascript">
-	alert("아이디 비밀번호 틀림");
+	alert("비밀번호 틀림");
 		history.back();
 	</script>
 	<%

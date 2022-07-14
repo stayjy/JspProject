@@ -54,8 +54,6 @@ width: 50px;}
 #table_search>input {
  margin-top: 3px;}
 
-
-
 </style>
 </head>
 <body>

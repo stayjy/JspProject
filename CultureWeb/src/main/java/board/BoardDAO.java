@@ -221,10 +221,13 @@ public class BoardDAO {
 		try {
 			con=getConnection();
 			
-			String sql = "update board set reacount=readcoun+1 where num=?";
+			String sql = "update board set readcount=readcount+1 where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			rs=pstmt.executeQuery();
+			
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO : 조회수 1 증가");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

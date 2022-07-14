@@ -7,30 +7,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 <%
 //int num파라미터 가져오기
 int num=Integer.parseInt(request.getParameter("num"));
-String pageNum = request.getParameter("pageNum");
+String pageNum =request.getParameter("pageNum");
 // BoardDAO 객체생성
 BoardDAO boardDAO=new BoardDAO();
-/* BoardDAO bodao = new BoardDAO(); */
+
 // 글의 조회수 정보를 1증가하는 메서드 호출
 boardDAO.updateReadCount(num);
 //BoardDTO boardDTO = getBoard(num)메서드 호출
 BoardDTO boardDTO=boardDAO.getBoard(num);
 
 %>
+
 <article>
 <h1>Notice Content</h1>
-<table id="notice">
+<table id="table">
 <tr><td>글번호</td><td><%=boardDTO.getNum() %></td>
     <td>글쓴날짜</td><td><%=boardDTO.getDate() %></td></tr>
 <tr><td>글쓴이</td><td><%=boardDTO.getName() %></td>
     <td>조회수</td><td><%=boardDTO.getReadcount() %></td></tr>
 <tr><td>제목</td><td colspan="3"><%=boardDTO.getSubject() %></td></tr>
 <tr><td>내용</td><td colspan="3"><%=boardDTO.getContent() %></td></tr>
+
 </table>
 <div id="table_search">
 <%
@@ -49,12 +52,14 @@ if(id!=null){
 }
 %>
 <input type="button" value="글목록" class="btn" 
-  onclick="location.href='notice.jsp?pageNum=<%=pageNum%>'">
+  onclick="location.href='MovieAc.jsp'">
 </div>
 <div class="clear"></div>
 <div id="page_control">
 </div>
 </article>
+
+
 <!-- 게시판 -->
 <!-- 본문들어가는 곳 -->
 <div class="clear"></div>

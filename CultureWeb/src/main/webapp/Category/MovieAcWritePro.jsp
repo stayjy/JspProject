@@ -1,3 +1,5 @@
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="board.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,6 +20,11 @@ String subject=request.getParameter("subject");
 String content=request.getParameter("content");
 int readcount=0;
 
+//upload 폴더 만들기
+String uploadPath=request.getRealPath("/upload");
+out.println(uploadPath);
+int maxSize=10*1024*1024;
+MultipartRequest multi=new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 BoardDTO boardDTO=new BoardDTO();
 boardDTO.setName(name);
 boardDTO.setPass(pass);
