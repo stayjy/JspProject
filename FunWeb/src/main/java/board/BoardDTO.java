@@ -11,8 +11,17 @@ public class BoardDTO {
 	private String content;
 	private int readcount;
     private Timestamp date;
+    //파일
+    private String file; 
     
-    //set, get   alt shift s => r
+    
+    public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	//set, get   alt shift s => r
 	public int getNum() {
 		return num;
 	}

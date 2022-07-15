@@ -54,6 +54,8 @@ public class BoardDAO {
 				boardDTO.setContent(rs.getString("content"));
 				boardDTO.setReadcount(rs.getInt("readcount"));
 				boardDTO.setDate(rs.getTimestamp("date"));
+				//첨부파일 
+				boardDTO.setFile(rs.getString("file"));
 				//배열한칸에 글 정보 저장
 				boardList.add(boardDTO);
 			}
@@ -89,6 +91,8 @@ public class BoardDAO {
 				boardDTO.setContent(rs.getString("content"));
 				boardDTO.setReadcount(rs.getInt("readcount"));
 				boardDTO.setDate(rs.getTimestamp("date"));
+				//첨부파일 
+				boardDTO.setFile(rs.getString("file"));
 			}
 		} catch (Exception e) {
 		
@@ -119,7 +123,7 @@ public class BoardDAO {
 			}
 			// 3단계 연결정보를 이용해서 sql구문을 만들기 => PreparedStatement 내장객체 준비
 			// 날짜 now()
-			sql="insert into board(num,name,pass,subject,content,readcount,date) values(?,?,?,?,?,?,now())";
+			sql="insert into board(num,name,pass,subject,content,readcount,date,file) values(?,?,?,?,?,?,now(),?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, boardDTO.getName());
@@ -127,6 +131,8 @@ public class BoardDAO {
 			pstmt.setString(4, boardDTO.getSubject());
 			pstmt.setString(5, boardDTO.getContent());
 			pstmt.setInt(6, boardDTO.getReadcount());
+			//파일
+			pstmt.setString(7, boardDTO.getFile());
 			// 4단계 sql구문을 실행 (insert, update, delete)
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -148,11 +154,13 @@ public class BoardDAO {
 			//1,2 디비연결
 			con=getConnection();
 			//3 sql
-			String sql="update board set subject=?, content=? where num=?";
+			String sql="update board set subject=?, content=?, file=? where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, boardDTO.getSubject());
 			pstmt.setString(2, boardDTO.getContent());
-			pstmt.setInt(3, boardDTO.getNum());
+			pstmt.setString(3, boardDTO.getFile());
+			pstmt.setInt(4, boardDTO.getNum());
+			
 			//4 실행 
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -212,6 +220,29 @@ public class BoardDAO {
 		}
 		
 		return count;
+	}
+	
+	public void updateReadCount(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql = "update board set readcount=readcount+1 where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)try { rs.close(); }catch(SQLException ex){}
+			if(pstmt!=null)try { pstmt.close(); }catch(SQLException ex){}
+			if(con!=null)try { con.close(); }catch(SQLException ex){}
+		}
+		
 	}
 	
 }//클래스

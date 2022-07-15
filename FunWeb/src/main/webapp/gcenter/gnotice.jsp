@@ -55,7 +55,7 @@
 // BoardDAO 객체생성
 BoardDAO boardDAO=new BoardDAO();
 //한페이지 보여줄(가져올) 글개수 설정
-int pageSize=3;
+int pageSize=12;
 //페이지 번호 가져오기
 //http://localhost:8080/FunWeb/center/notice.jsp	페이지 넘버 없는 경우
 //http://localhost:8080/FunWeb/center/notice.jsp?pageNum=2 있는 경우
@@ -81,15 +81,18 @@ int endRow=startRow+pageSize-1;
 
 // List boardList = getBoardList()메서드 호출
 List boardList=boardDAO.getBoardList(startRow, pageSize);
+//파일들고오기
+
 %>
 <article>
-<h1>Notice</h1>
+<h1>갤러리 File Notice</h1>
 <table id="notice">
 <tr><th class="tno">No.</th>
     <th class="ttitle">Title</th>
     <th class="twrite">Writer</th>
     <th class="tdate">Date</th>
     <th class="tread">Read</th></tr>
+<tr>
    <%
    //날짜 => 문자열 모양변경
    SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
@@ -97,16 +100,26 @@ List boardList=boardDAO.getBoardList(startRow, pageSize);
    for(int i=0;i<boardList.size();i++){
 	   BoardDTO boardDTO=(BoardDTO)boardList.get(i);
 	   %>
-<tr onclick="location.href='content.jsp?num=<%=boardDTO.getNum()%>'">
-   <td><%=boardDTO.getNum() %></td>
-    <td class="left"><%=boardDTO.getSubject() %></td>
-    <td><%=boardDTO.getName() %></td>
-    <td><%=dateFormat.format(boardDTO.getDate()) %></td>
-    <td><%=boardDTO.getReadcount() %></td></tr>	   
-	   <%
+
+	<td>
+	<%=i+1 %><br>
+	 <a href="gcontent.jsp?num=<%=boardDTO.getNum()%>">
+	 <img src="../upload/<%=boardDTO.getFile()%>" width="150" height="150"></a>
+	 <br>
+	  <%=boardDTO.getSubject() %>
+	  <%=boardDTO.getName() %>
+	  <%=dateFormat.format(boardDTO.getDate()) %>
+	</td>
+	<%
+		if((i+1)%4 == 0){
+		%></tr><tr><%
+		}
+	   
    }
    %> 
+</tr>
 </table>
+
 <div id="table_search">
 <input type="text" name="search" class="input_box">
 <input type="button" value="search" class="btn">
@@ -119,7 +132,7 @@ String id=(String)session.getAttribute("id");
 if(id!=null) {
 	%>
 <input type="button" value="글쓰기" class="btn" 
-  onclick="location.href='write.jsp'">
+  onclick="location.href='gwrite.jsp'">
 	<%
 }
 %>
@@ -160,20 +173,20 @@ if(endPage > pageCount) {
 <%
 if(startPage > pageBlock) {
 %>
-	<a href="notice.jsp?pageNum=<%=startPage-pageBlock%>">Prev</a>
+	<a href="gnotice.jsp?pageNum=<%=startPage-pageBlock%>">Prev</a>
 <%
 	
 }
 
 for(int i=startPage; i<=endPage; i++) {
 %>
-	<a href="notice.jsp?pageNum=<%=i%>"><%=i%></a>	
+	<a href="gnotice.jsp?pageNum=<%=i%>"><%=i%></a>	
 	<% 
 }
 
 if(endPage < pageCount) {
 	%>
-	<a href="notice.jsp?pageNum=<%=startPage+pageBlock%>">Next</a>
+	<a href="gnotice.jsp?pageNum=<%=startPage+pageBlock%>">Next</a>
 	<%	
 }
 %>

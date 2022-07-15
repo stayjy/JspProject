@@ -58,7 +58,7 @@ BoardDAO boardDAO=new BoardDAO();
 BoardDTO boardDTO=boardDAO.getBoard(num);
 %>
 <article>
-<h1>Notice Content</h1>
+<h1>File Notice Content</h1>
 <table id="notice">
 <tr><td>글번호</td><td><%=boardDTO.getNum() %></td>
     <td>글쓴날짜</td><td><%=boardDTO.getDate() %></td></tr>
@@ -67,7 +67,6 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
 <tr><td>제목</td><td colspan="3"><%=boardDTO.getSubject() %></td></tr>
 <tr><td>파일</td><td colspan="3">
 <a href="../upload/<%=boardDTO.getFile() %>" download><%=boardDTO.getFile() %></a>
-<img src="../upload/<%=boardDTO.getFile() %>" width="300" height="300">
 </td></tr>
 <tr><td>내용</td><td colspan="3"><%=boardDTO.getContent() %></td></tr>
 </table>
@@ -79,17 +78,17 @@ if(id!=null){
 	if(id.equals(boardDTO.getName())){
 		%>
 		<input type="button" value="글수정" class="btn" 
-  		onclick="location.href='update.jsp?num=<%=boardDTO.getNum()%>'">
+  		onclick="location.href='fupdate.jsp?num=<%=boardDTO.getNum()%>'">
 
 		<input type="button" value="글삭제" class="btn" 
-  		onclick="location.href='delete.jsp?num=<%=boardDTO.getNum()%>'">
+  		onclick="location.href='fdelete.jsp?num=<%=boardDTO.getNum()%>'">
 		<%
 	}
 }
 
 %>
 <input type="button" value="글목록" class="btn" 
-  onclick="location.href='notice.jsp'">
+  onclick="location.href='fnotice.jsp'">
 </div>
 <div class="clear"></div>
 <div id="page_control">

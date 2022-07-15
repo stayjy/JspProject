@@ -40,9 +40,9 @@
 <!-- 왼쪽메뉴 -->
 <nav id="sub_menu">
 <ul>
-<li><a href="#">Notice</a></li>
-<li><a href="#">Public News</a></li>
-<li><a href="#">Driver Download</a></li>
+<li><a href="../center/notice.jsp">Notice</a></li>
+<li><a href="../fcenter/fnotice.jsp">File Download</a></li>
+<li><a href="../gcenter/gnotice.jsp">Public News</a></li>
 <li><a href="#">Service Policy</a></li>
 </ul>
 </nav>
@@ -58,7 +58,7 @@ if(id==null){
 %>
 <article>
 <h1>Notice Write</h1>
-<form action="writePro.jsp" method="post">
+<form action="writePro.jsp" method="post" >
 <input type="hidden" name="pass" value="1234">
 <table id="notice">
 <tr><td>글쓴이</td><td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
