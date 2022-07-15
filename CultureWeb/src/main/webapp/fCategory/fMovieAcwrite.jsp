@@ -1,5 +1,3 @@
-<%@page import="board.BoardDTO"%>
-<%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,14 +25,20 @@ padding-right: 10px;
 font-family: Verdana,Geneva,sans-serif;
 font-size: 1em;line-height: 1.5em}
 
+table {
+margin: auto;
+}
 .table_bar {
 background-color: #6495ED ;
 }
 
-article th.tno{
+article td {
 border-top-left-radius:5px;
+border-top-right-radius:5px;
+border-bottom-right-radius:5px;
 border-bottom-left-radius:5px;
-width:50px;}
+/* border-bottom-left-radius:5px;
+width:50px; */}
 
 article th.ttitle {
 width: 300px;}
@@ -53,10 +57,20 @@ width: 50px;}
 #table_search>input {
  margin-top: 3px;}
 
+
+
 </style>
 </head>
-<jsp:include page="../inc/Top.jsp"></jsp:include>
 <body>
+<jsp:include page="../inc/Top.jsp"></jsp:include>
+<%
+String id=(String)session.getAttribute("id");
+//세션값이 없으면 login.jsp 이동
+if(id==null){
+	
+	response.sendRedirect("../member/Login.jsp");
+}
+%>
 <div id="sub_menu">
 <ul class="nav flex-column" >
   <li class="nav-item">
@@ -68,37 +82,32 @@ width: 50px;}
   <li class="nav-item">
     <a class="nav-link" href="../gCategory/gMovieAc.jsp">갤러리</a>
   </li>
+
+
 </ul>
 </div>
-<%
-String id=(String)session.getAttribute("id");
-//세션값이 없으면 login.jsp 이동
-if(id==null){
-	response.sendRedirect("../member/Login.jsp");
-}
-int num=Integer.parseInt(request.getParameter("num"));
-// BoardDAO 객체생성
-BoardDAO boardDAO=new BoardDAO();
-// getBoard()
-BoardDTO boardDTO=boardDAO.getBoard(num);
-%>
+
 <article>
-<h1>Notice Update</h1>
-<form action="UpdatePro.jsp" method="post">
-<input type="hidden" name="num" value="<%=boardDTO.getNum()%>">
-<table id="notice">
-<tr><td>글쓴이</td>
-    <td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
-<tr><td>제목</td>
-    <td><input type="text" name="subject" value="<%=boardDTO.getSubject()%>"></td></tr>
-<tr><td>내용</td>
-    <td><textarea name="content" rows="10" cols="20"><%=boardDTO.getContent() %></textarea></td></tr>
+<h2 style="text-align: center;"> 게시글 쓰기</h2>
+<form action="fMovieAcwritePro.jsp" method="post" enctype="multipart/form-data">
+<input type="hidden" name="pass" value="1234">
+<table id="table">
+<thead class="table_bar">
+<tr><td>글쓴이</td><td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
+<tr><td>제목</td><td><input type="text" name="subject"></td></tr>
+<tr><td>파일</td><td><input type="file" name="file"></td></tr>
+<tr><td>내용</td><td><textarea name="content" rows="20" cols="40"></textarea></td></tr>
+</thead>
 </table>
+<section>
 <div id="table_search">
-<input type="submit" value="글수정" class="btn" >
-<input type="button" value="글목록" class="btn" 
-  onclick="location.href='MovieAc.jsp'">
+<input type="submit" value="글쓰기" class="btn btn-outline-primary" style="position: absolute; left: 60%;">
+<input type="button" value="글목록" class="btn btn-outline-primary" style="position: absolute; left: 66%;"
+  onclick="location.href='fMovieAc.jsp'">
 </div>
+</section>
 </form>
+</article>
+
 </body>
 </html>

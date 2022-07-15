@@ -97,7 +97,7 @@ width: 50px;}
 	List boardList = boardDAO.getBoardList(startRow, pageSize);
 	%>
 	<article>
-		<h1>게시판</h1>
+		<h1>자료실</h1>
 		<table class="table">
 		  <thead class="table_bar">
 			<tr>
@@ -108,23 +108,32 @@ width: 50px;}
 				<th scope="col" class="tread">Read</th>
 			</tr>
 			</thead>
-  			<tbody>
-			<%
-			//날짜 => 문자열 모양변경
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
-			for (int i = 0; i < boardList.size(); i++) {
-				BoardDTO boardDTO = (BoardDTO) boardList.get(i);
-			%>
-			<tr onclick="location.href='Content.jsp?num=<%=boardDTO.getNum()%>'">
-				<td><%=boardDTO.getNum()%></td>
-				<td class="left"><%=boardDTO.getSubject()%></td>
-				<td><%=boardDTO.getName()%></td>
-				<td><%=dateFormat.format(boardDTO.getDate())%></td>
-				<td><%=boardDTO.getReadcount()%></td>
-			</tr>
-			<%
-			}
-			%>
+  			<tr>
+  <%
+   //날짜 => 문자열 모양변경
+   SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+   
+   for(int i=0;i<boardList.size();i++){
+	   BoardDTO boardDTO=(BoardDTO)boardList.get(i);
+	   %>
+
+	<td>
+	<%=i+1 %><br>
+	 <a href="gcontent.jsp?num=<%=boardDTO.getNum()%>">
+	 <img src="../upload/<%=boardDTO.getFile()%>" width="150" height="150"></a>
+	 <br>
+	  <%=boardDTO.getSubject() %>
+	  <%=boardDTO.getName() %>
+	  <%=dateFormat.format(boardDTO.getDate()) %>
+	</td>
+	<%
+		if((i+1)%4 == 0){
+		%></tr><tr><%
+		}
+	   
+   }
+   %> 
+		</tr>
 		</table>
 
 		<div id="table_search">
@@ -137,7 +146,7 @@ width: 50px;}
 			if (id != null) {
 			%>
 			<input type="button" value="글쓰기" class="btn btn-outline-primary"
-				onclick="location.href='MovieAcWrite.jsp'">
+				onclick="location.href='gMovieAcwrite.jsp'">
 			<%
 			}
 			%>
@@ -167,20 +176,20 @@ width: 50px;}
 				if (startPage > pageBlock) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="MovieAc.jsp?pageNum=<%=startPage - pageBlock%>">Prev</a></li>
+					href="gMovieAc.jsp?pageNum=<%=startPage - pageBlock%>">Prev</a></li>
 				<%
 				}
 
 				for (int i = startPage; i <= endPage; i++) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="MovieAc.jsp?pageNum=<%=i%>"><%=i%></a></li>
+					href="gMovieAc.jsp?pageNum=<%=i%>"><%=i%></a></li>
 				<%
 				}
 				if (endPage < pageCount) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="MovieAc.jsp?pageNum=<%=startPage + pageBlock%>">Next</a></li>
+					href="gMovieAc.jsp?pageNum=<%=startPage + pageBlock%>">Next</a></li>
 				<%
 				}
 				%>

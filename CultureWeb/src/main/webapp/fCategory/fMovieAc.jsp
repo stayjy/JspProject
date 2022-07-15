@@ -97,7 +97,7 @@ width: 50px;}
 	List boardList = boardDAO.getBoardList(startRow, pageSize);
 	%>
 	<article>
-		<h1>게시판</h1>
+		<h1>자료실</h1>
 		<table class="table">
 		  <thead class="table_bar">
 			<tr>
@@ -115,7 +115,7 @@ width: 50px;}
 			for (int i = 0; i < boardList.size(); i++) {
 				BoardDTO boardDTO = (BoardDTO) boardList.get(i);
 			%>
-			<tr onclick="location.href='Content.jsp?num=<%=boardDTO.getNum()%>'">
+			<tr onclick="location.href='fContent.jsp?num=<%=boardDTO.getNum()%>'">
 				<td><%=boardDTO.getNum()%></td>
 				<td class="left"><%=boardDTO.getSubject()%></td>
 				<td><%=boardDTO.getName()%></td>
@@ -137,7 +137,7 @@ width: 50px;}
 			if (id != null) {
 			%>
 			<input type="button" value="글쓰기" class="btn btn-outline-primary"
-				onclick="location.href='MovieAcWrite.jsp'">
+				onclick="location.href='fMovieAcwrite.jsp'">
 			<%
 			}
 			%>
@@ -167,20 +167,20 @@ width: 50px;}
 				if (startPage > pageBlock) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="MovieAc.jsp?pageNum=<%=startPage - pageBlock%>">Prev</a></li>
+					href="fMovieAc.jsp?pageNum=<%=startPage - pageBlock%>">Prev</a></li>
 				<%
 				}
 
 				for (int i = startPage; i <= endPage; i++) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="MovieAc.jsp?pageNum=<%=i%>"><%=i%></a></li>
+					href="fMovieAc.jsp?pageNum=<%=i%>"><%=i%></a></li>
 				<%
 				}
 				if (endPage < pageCount) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="MovieAc.jsp?pageNum=<%=startPage + pageBlock%>">Next</a></li>
+					href="fMovieAc.jsp?pageNum=<%=startPage + pageBlock%>">Next</a></li>
 				<%
 				}
 				%>

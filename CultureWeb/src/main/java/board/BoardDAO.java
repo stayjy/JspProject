@@ -88,6 +88,8 @@ public class BoardDAO {
 				boardDTO.setContent(rs.getString("content"));
 				boardDTO.setReadcount(rs.getInt("readcount"));
 				boardDTO.setDate(rs.getTimestamp("date"));
+				//첨부파일 
+				boardDTO.setFile(rs.getString("file"));
 			}
 		} catch (Exception e) {
 		
@@ -118,7 +120,7 @@ public class BoardDAO {
 			}
 			// 3단계 연결정보를 이용해서 sql구문을 만들기 => PreparedStatement 내장객체 준비
 			// 날짜 now()
-			sql="insert into board(num,name,pass,subject,content,readcount,date) values(?,?,?,?,?,?,now())";
+			sql="insert into board(num,name,pass,subject,content,readcount,date,file) values(?,?,?,?,?,?,now(),?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, boardDTO.getName());
@@ -126,6 +128,8 @@ public class BoardDAO {
 			pstmt.setString(4, boardDTO.getSubject());
 			pstmt.setString(5, boardDTO.getContent());
 			pstmt.setInt(6, boardDTO.getReadcount());
+			//파일
+			pstmt.setString(7, boardDTO.getFile());
 			// 4단계 sql구문을 실행 (insert, update, delete)
 			pstmt.executeUpdate();
 		} catch (Exception e) {

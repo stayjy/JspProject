@@ -57,19 +57,14 @@ width: 50px;}
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
-<%
-//int num파라미터 가져오기
-int num=Integer.parseInt(request.getParameter("num"));
-String pageNum =request.getParameter("pageNum");
-// BoardDAO 객체생성
-BoardDAO boardDAO=new BoardDAO();
-
-// 글의 조회수 정보를 1증가하는 메서드 호출
-boardDAO.updateReadCount(num);
-//BoardDTO boardDTO = getBoard(num)메서드 호출
-BoardDTO boardDTO=boardDAO.getBoard(num);
-
-%>
+<!-- <nav id="sub_menu">
+<ul>
+<li><a href="#">Notice</a></li>
+<li><a href="#">Public News</a></li>
+<li><a href="#">Driver Download</a></li>
+<li><a href="#">Service Policy</a></li>
+</ul>
+</nav> -->
 <div id="sub_menu">
 <ul class="nav flex-column" >
   <li class="nav-item">
@@ -83,6 +78,21 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
   </li>
 </ul>
 </div>
+
+<%
+//int num파라미터 가져오기
+int num=Integer.parseInt(request.getParameter("num"));
+String pageNum =request.getParameter("pageNum");
+// BoardDAO 객체생성
+BoardDAO boardDAO=new BoardDAO();
+
+// 글의 조회수 정보를 1증가하는 메서드 호출
+boardDAO.updateReadCount(num);
+//BoardDTO boardDTO = getBoard(num)메서드 호출
+BoardDTO boardDTO=boardDAO.getBoard(num);
+
+%>
+
 <article>
 <h1>Notice Content</h1>
 <table id="table">
@@ -105,16 +115,16 @@ if(id!=null){
 	if(id.equals(boardDTO.getName())){
 		%>
 		<input type="button" value="글수정" class="btn" 
-  		onclick="location.href='Update.jsp?num=<%=boardDTO.getNum()%>'">
+  		onclick="location.href='fUpdate.jsp?num=<%=boardDTO.getNum()%>'">
 
 		<input type="button" value="글삭제" class="btn" 
-  		onclick="location.href='Delete.jsp?num=<%=boardDTO.getNum()%>'">
+  		onclick="location.href='fDelete.jsp?num=<%=boardDTO.getNum()%>'">
 		<%
 	}
 }
 %>
 <input type="button" value="글목록" class="btn" 
-  onclick="location.href='MovieAc.jsp'">
+  onclick="location.href='fMovieAc.jsp'">
 </div>
 <div class="clear"></div>
 <div id="page_control">

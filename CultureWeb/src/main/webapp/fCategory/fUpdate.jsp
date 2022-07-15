@@ -27,14 +27,20 @@ padding-right: 10px;
 font-family: Verdana,Geneva,sans-serif;
 font-size: 1em;line-height: 1.5em}
 
+table {
+margin: auto;
+}
 .table_bar {
 background-color: #6495ED ;
 }
 
-article th.tno{
+article td {
 border-top-left-radius:5px;
+border-top-right-radius:5px;
+border-bottom-right-radius:5px;
 border-bottom-left-radius:5px;
-width:50px;}
+/* border-bottom-left-radius:5px;
+width:50px; */}
 
 article th.ttitle {
 width: 300px;}
@@ -53,23 +59,12 @@ width: 50px;}
 #table_search>input {
  margin-top: 3px;}
 
+
+
 </style>
 </head>
-<jsp:include page="../inc/Top.jsp"></jsp:include>
 <body>
-<div id="sub_menu">
-<ul class="nav flex-column" >
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="../Category/MovieAc.jsp">게시판</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../fCategory/fMovieAc.jsp">자료실</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../gCategory/gMovieAc.jsp">갤러리</a>
-  </li>
-</ul>
-</div>
+<jsp:include page="../inc/Top.jsp"></jsp:include>
 <%
 String id=(String)session.getAttribute("id");
 //세션값이 없으면 login.jsp 이동
@@ -82,9 +77,24 @@ BoardDAO boardDAO=new BoardDAO();
 // getBoard()
 BoardDTO boardDTO=boardDAO.getBoard(num);
 %>
+<div id="sub_menu">
+<ul class="nav flex-column" >
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="../Category/MovieAc.jsp">게시판</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../fCategory/fMovieAc.jsp">자료실</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../gCategory/gMovieAc.jsp">갤러리</a>
+  </li>
+
+
+</ul>
+</div>
 <article>
 <h1>Notice Update</h1>
-<form action="UpdatePro.jsp" method="post">
+<form action="fUpdatePro.jsp" method="post">
 <input type="hidden" name="num" value="<%=boardDTO.getNum()%>">
 <table id="notice">
 <tr><td>글쓴이</td>
@@ -97,7 +107,7 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
 <div id="table_search">
 <input type="submit" value="글수정" class="btn" >
 <input type="button" value="글목록" class="btn" 
-  onclick="location.href='MovieAc.jsp'">
+  onclick="location.href='fMovieAc.jsp'">
 </div>
 </form>
 </body>
