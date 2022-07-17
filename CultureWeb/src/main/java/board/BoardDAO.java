@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.naming.Context;
@@ -53,6 +54,8 @@ public class BoardDAO {
 				boardDTO.setContent(rs.getString("content"));
 				boardDTO.setReadcount(rs.getInt("readcount"));
 				boardDTO.setDate(rs.getTimestamp("date"));
+				
+				boardDTO.setFile(rs.getString("file"));
 				//배열한칸에 글 정보 저장
 				boardList.add(boardDTO);
 			}
@@ -151,11 +154,12 @@ public class BoardDAO {
 			//1,2 디비연결
 			con=getConnection();
 			//3 sql
-			String sql="update board set subject=?, content=? where num=?";
+			String sql="update board set subject=?, content=?, file=? where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, boardDTO.getSubject());
 			pstmt.setString(2, boardDTO.getContent());
-			pstmt.setInt(3, boardDTO.getNum());
+			pstmt.setString(3, boardDTO.getFile());
+			pstmt.setInt(4, boardDTO.getNum());
 			//4 실행 
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -241,6 +245,47 @@ public class BoardDAO {
 			if(con!=null)try { con.close(); }catch(SQLException ex){}
 		}
 		
+	}
+	
+	
+	public ArrayList<BoardDTO> getSearch(String searchType, String search) {
+		ArrayList<BoardDTO> boardList = new ArrayList<BoardDTO>();
+		String sql = "select * from board where "+searchType.trim();
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		BoardDTO boardDTO =null;
+		try {
+			if(search !=null && !search.equals("")) {
+				sql += "like '%"+search.trim()+"%' order by num desc";
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+			}	
+				while(rs.next()) {
+					boardDTO.setNum(rs.getInt("num"));
+					boardDTO.setPass(rs.getString("pass"));
+					boardDTO.setName(rs.getString("name"));
+					boardDTO.setSubject(rs.getString("subject"));
+					boardDTO.setContent(rs.getString("content"));
+					boardDTO.setReadcount(rs.getInt("readcount"));
+					boardDTO.setDate(rs.getTimestamp("date"));
+					
+					boardDTO.setFile(rs.getString("file"));
+					
+					boardList.add(boardDTO);
+					
+				}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null)try { rs.close(); }catch(SQLException ex){}
+			if(pstmt!=null)try { pstmt.close(); }catch(SQLException ex){}
+			if(con!=null)try { con.close(); }catch(SQLException ex){}
+		}
+		return boardList;		
 	}
 
 	

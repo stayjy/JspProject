@@ -8,53 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-#sub_menu {
-float: left;
-padding: 20px 20px 50px 0;
-margin-top: 10%;
-}
-
-#sub_menu .nav-item {
-font-weight: bold;
-; }
-
-article{
-float: right; width: 90%;
-
-padding-top: 20px;
-padding-right: 10px;
-font-family: Verdana,Geneva,sans-serif;
-font-size: 1em;line-height: 1.5em}
-
-.table_bar {
-background-color: #6495ED ;
-}
-
-article th.tno{
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-width:50px;}
-
-article th.ttitle {
-width: 300px;}
-
-article th.twrite {
-width: 50px;}
-
-article th.tdate {
-width: 50px;}
-
-article th.tread {
-border-top-right-radius:5px;
-border-bottom-right-radius:5px;
-width: 50px;}
- 
-#table_search>input {
- margin-top: 3px;}
-
-</style>
+<link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
@@ -96,6 +50,7 @@ width: 50px;}
 	int endRow = startRow + pageSize - 1;
 	List boardList = boardDAO.getBoardList(startRow, pageSize);
 	%>
+	
 	<article>
 		<h1>게시판</h1>
 		<table class="table">
@@ -128,8 +83,15 @@ width: 50px;}
 		</table>
 
 		<div id="table_search">
+		 
+		 <form action="SearchBoard.jsp" method="get">
+		  <select name="seacthType">
+		  	<option value="writer">작성자</option>
+		  	<option value="title">제목</option>
+		  </select>
 			<input type="text" name="search" class="input_box"> 
 			<input type="button" value="검색" class="btn btn-outline-primary">
+		</form>
 			<%
 			//세션값 가져오기
 			String id = (String) session.getAttribute("id");

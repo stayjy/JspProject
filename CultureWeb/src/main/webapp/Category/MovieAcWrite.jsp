@@ -6,64 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-<style type="text/css">
-
-#sub_menu {
-float: left;
-padding: 20px 20px 50px 0;
-margin-top: 10%;
-}
-
-#sub_menu .nav-item {
-font-weight: bold;
-; }
-
-article{
-float: right; width: 90%;
-
-padding-top: 20px;
-padding-right: 10px;
-font-family: Verdana,Geneva,sans-serif;
-font-size: 1em;line-height: 1.5em}
-
-table {
-margin: auto;
-}
-.table_bar {
-background-color: #6495ED ;
-}
-
-article td {
-border-top-left-radius:5px;
-border-top-right-radius:5px;
-border-bottom-right-radius:5px;
-border-bottom-left-radius:5px;
-/* border-bottom-left-radius:5px;
-width:50px; */}
-
-article th.ttitle {
-width: 300px;}
-
-article th.twrite {
-width: 50px;}
-
-article th.tdate {
-width: 50px;}
-
-article th.tread {
-border-top-right-radius:5px;
-border-bottom-right-radius:5px;
-width: 50px;}
- 
-#table_search>input {
- margin-top: 3px;}
-
-
-
-</style>
+<link rel="stylesheet" href="../css/style2.css">
+<jsp:include page="../inc/Top.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="../inc/Top.jsp"></jsp:include>
+
 <%
 String id=(String)session.getAttribute("id");
 //세션값이 없으면 login.jsp 이동
@@ -87,25 +34,27 @@ if(id==null){
 </ul>
 </div>
 
-
 <article>
-<h2 style="text-align: center;"> 게시글 쓰기</h2>
+<h2> 글쓰기</h2>
 <form action="MovieAcWritePro.jsp" method="post">
 <input type="hidden" name="pass" value="1234">
-<table id="table">
-<thead class="table_bar">
-<tr><td>글쓴이</td><td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
+<table class="table">
+
+<tr><td>작성자</td><td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
 <tr><td>제목</td><td><input type="text" name="subject"></td></tr>
-<tr><td>내용</td><td><textarea name="content" rows="20" cols="40"></textarea></td></tr>
-</thead>
+<tr><td>내용</td><td><textarea name="content" rows="20" cols="80"></textarea></td></tr>
+<tr><td></td>
+	<td><input type="submit" value="글쓰기" class="btn btn-outline-primary">
+<input type="button" value="글목록" class="btn btn-outline-primary" 
+  onclick="location.href='MovieAc.jsp'"></td>
 </table>
-<section>
-<div id="table_search">
+
+<!-- <div id="table_search">
 <input type="submit" value="글쓰기" class="btn btn-outline-primary" style="position: absolute; left: 60%;">
 <input type="button" value="글목록" class="btn btn-outline-primary" style="position: absolute; left: 66%;"
   onclick="location.href='MovieAc.jsp'">
-</div>
-</section>
+</div> -->
+
 </form>
 </article>
 

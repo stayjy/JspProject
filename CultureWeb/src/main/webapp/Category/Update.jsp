@@ -7,53 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-
-#sub_menu {
-float: left;
-padding: 20px 20px 50px 0;
-margin-top: 10%;
-}
-
-#sub_menu .nav-item {
-font-weight: bold;
-; }
-
-article{
-float: right; width: 90%;
-
-padding-top: 20px;
-padding-right: 10px;
-font-family: Verdana,Geneva,sans-serif;
-font-size: 1em;line-height: 1.5em}
-
-.table_bar {
-background-color: #6495ED ;
-}
-
-article th.tno{
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-width:50px;}
-
-article th.ttitle {
-width: 300px;}
-
-article th.twrite {
-width: 50px;}
-
-article th.tdate {
-width: 50px;}
-
-article th.tread {
-border-top-right-radius:5px;
-border-bottom-right-radius:5px;
-width: 50px;}
- 
-#table_search>input {
- margin-top: 3px;}
-
-</style>
+<link rel="stylesheet" href="../css/style2.css">
 </head>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
 <body>
@@ -86,19 +40,19 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
 <h1>Notice Update</h1>
 <form action="UpdatePro.jsp" method="post">
 <input type="hidden" name="num" value="<%=boardDTO.getNum()%>">
-<table id="notice">
+<table class="table">
 <tr><td>글쓴이</td>
     <td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
 <tr><td>제목</td>
     <td><input type="text" name="subject" value="<%=boardDTO.getSubject()%>"></td></tr>
 <tr><td>내용</td>
-    <td><textarea name="content" rows="10" cols="20"><%=boardDTO.getContent() %></textarea></td></tr>
+    <td><textarea name="content" rows="20" cols="80"><%=boardDTO.getContent() %></textarea></th></tr>
+<tr><td></td>
+	<td><input type="submit" value="글수정" class="btn btn-outline-primary"  >
+	<input type="button" value="글목록" class="btn btn-outline-primary" 
+  onclick="location.href='MovieAc.jsp'"></td>
+	<td></td></tr>
 </table>
-<div id="table_search">
-<input type="submit" value="글수정" class="btn" >
-<input type="button" value="글목록" class="btn" 
-  onclick="location.href='MovieAc.jsp'">
-</div>
 </form>
 </body>
 </html>

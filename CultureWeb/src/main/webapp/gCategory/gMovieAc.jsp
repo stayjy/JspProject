@@ -6,55 +6,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="../css/style2.css">
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-#sub_menu {
-float: left;
-padding: 20px 20px 50px 0;
-margin-top: 10%;
-}
-
-#sub_menu .nav-item {
-font-weight: bold;
-; }
-
-article{
-float: right; width: 90%;
-
-padding-top: 20px;
-padding-right: 10px;
-font-family: Verdana,Geneva,sans-serif;
-font-size: 1em;line-height: 1.5em}
-
-.table_bar {
-background-color: #6495ED ;
-}
-
-article th.tno{
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-width:50px;}
-
-article th.ttitle {
-width: 300px;}
-
-article th.twrite {
-width: 50px;}
-
-article th.tdate {
-width: 50px;}
-
-article th.tread {
-border-top-right-radius:5px;
-border-bottom-right-radius:5px;
-width: 50px;}
- 
-#table_search>input {
- margin-top: 3px;}
-
-</style>
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>

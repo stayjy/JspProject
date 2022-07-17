@@ -7,53 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-
-#sub_menu {
-float: left;
-padding: 20px 20px 50px 0;
-margin-top: 10%;
-}
-
-#sub_menu .nav-item {
-font-weight: bold;
-; }
-
-article{
-float: right; width: 90%;
-
-padding-top: 20px;
-padding-right: 10px;
-font-family: Verdana,Geneva,sans-serif;
-font-size: 1em;line-height: 1.5em}
-
-.table_bar {
-background-color: #6495ED ;
-}
-
-article th.tno{
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-width:50px;}
-
-article th.ttitle {
-width: 300px;}
-
-article th.twrite {
-width: 50px;}
-
-article th.tdate {
-width: 50px;}
-
-article th.tread {
-border-top-right-radius:5px;
-border-bottom-right-radius:5px;
-width: 50px;}
- 
-#table_search>input {
- margin-top: 3px;}
-
-</style>
+<link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
@@ -85,7 +39,7 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
 </div>
 <article>
 <h1>Notice Content</h1>
-<table id="table">
+<table class="table">
 <tr><td>글번호</td><td><%=boardDTO.getNum() %></td>
     <td>글쓴날짜</td><td><%=boardDTO.getDate() %></td></tr>
 <tr><td>글쓴이</td><td><%=boardDTO.getName() %></td>
@@ -96,26 +50,30 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
 <img src="../upload/<%=boardDTO.getFile() %>" width="300" height="300">
 </td></tr>
 <tr><td>내용</td><td colspan="3"><%=boardDTO.getContent() %></td></tr>
-</table>
+<tr><td></td>
 <div id="table_search">
+<td>
 <%
 //글수정 글삭제 => 로그인(세션값), 글쓴이 일치하면 글수정, 글삭제 버튼이 보이기
 String id=(String)session.getAttribute("id");
 if(id!=null){
 	if(id.equals(boardDTO.getName())){
 		%>
-		<input type="button" value="글수정" class="btn" 
+		<input type="button" value="글수정" class="btn btn-outline-primary"  
   		onclick="location.href='Update.jsp?num=<%=boardDTO.getNum()%>'">
 
-		<input type="button" value="글삭제" class="btn" 
+		<input type="button" value="글삭제" class="btn btn-outline-primary"  
   		onclick="location.href='Delete.jsp?num=<%=boardDTO.getNum()%>'">
 		<%
 	}
 }
 %>
-<input type="button" value="글목록" class="btn" 
-  onclick="location.href='MovieAc.jsp'">
+<input type="button" value="글목록" class="btn btn-outline-primary" 
+  onclick="location.href='MovieAc.jsp'"></td>
+  <td></td></tr>
 </div>
+</table>
+
 <div class="clear"></div>
 <div id="page_control">
 </div>
