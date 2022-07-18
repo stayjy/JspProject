@@ -82,15 +82,15 @@
 			%>
 		</table>
 
-		<div id="table_search">
+		<div class="container">
 		 
-		 <form action="SearchBoard.jsp" method="get">
-		  <select name="seacthType">
-		  	<option value="writer">작성자</option>
-		  	<option value="title">제목</option>
+		 <form action="SearchBoard.jsp" method="get" name="search">
+		 <select name="searchField">
+		  	<option value="name">작성자</option>
+		  	<option value="subject">제목</option>
 		  </select>
 			<input type="text" name="search" class="input_box"> 
-			<input type="button" value="검색" class="btn btn-outline-primary">
+			<input type="submit" value="검색" class="btn btn-outline-primary">
 		</form>
 			<%
 			//세션값 가져오기

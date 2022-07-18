@@ -53,7 +53,7 @@
   var checkPassResult = false; // 패스워드 검사
   var checkRetypePassReulst = false; // 패스워드 확인 결과
   //아이디 중복확인 여부
-  function winopen(){
+/*   function winopen(){
  	  
  	//새창을 열어서 페이지를 오픈 후 -> 회원아이디정보를 가지고 중복체크
  	//1. 아이디가 없으면 알림창과 진행x
@@ -66,7 +66,7 @@
  		window.open("JoinIdCheck.jsp?id="+document.fr.id.value,"","width=500, height=300");
  	}
  }
-  
+   */
 	// 패스워드 보안강도 검사  
 	function checkPass(pass){
 		// 패스워드 검사를 위한 정규표현식 패턴 작성 및 검사 결과에 따른 변수값 변경
@@ -173,8 +173,12 @@
 						<div class="mb-3">
 							<label for="name">아이디</label>
 							<input type="text" class="form-control" name="id" placeholder="" value="" required> <br>
-							<input type="button" value="중복확인" style="padding: 4px 6px;" class="btn btn-outline-secondary" onclick="winopen()"><br>
+							<label><div id="dupdiv"></div></label><br><br>
+							<input type="button" value="중복확인" style="padding: 4px 6px;" class="btn" ><br>  <!-- onclick="winopen()" -->
+							
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
+							
+							
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="nickname">비밀번호</label>
@@ -218,7 +222,24 @@
       <p class="mb-1">&copy; 2021 YD</p>
     </footer>
   </div> -->
-
+ <script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//class="dup" 클릭했을 때
+		$('.btn').click(function(){
+			//alert("클릭");
+			//dupCheck2.jsp class="id" val()을 들고 가서 아이디 중복테크 하고
+			// 그 결과를 가져와서 id="dupdiv" 내용 변경
+			$.ajax({
+				url:'dupCheck2.jsp',
+				data:{'id':$('#id').val()},
+				success:function(rdata){
+					$('#dupdiv').html(rdata).css('color','blue');			
+				}
+			});
+		});
+	});
+</script>
 	<script>
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
@@ -235,6 +256,7 @@
       });
     }, false);
   </script>
+  
 
 
 </body>

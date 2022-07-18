@@ -57,7 +57,7 @@ BoardDTO boardDTO=boardDAO.getBoard(num);
     <td>조회수</td><td><%=boardDTO.getReadcount() %></td></tr>
 <tr><td>제목</td><td colspan="3"><%=boardDTO.getSubject() %></td></tr>
 <tr><td>파일</td><td colspan="3">
-<a href="../upload/<%=boardDTO.getFile() %>" download><%=boardDTO.getFile() %></a>
+<a href="../upload/<%=boardDTO.getFile() %>" download><%=boardDTO.getFile() %></a><br>
 <img src="../upload/<%=boardDTO.getFile() %>" width="300" height="300">
 </td></tr>
 <tr><td>내용</td><td colspan="3"><%=boardDTO.getContent() %></td></tr>

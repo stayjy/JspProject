@@ -248,31 +248,36 @@ public class BoardDAO {
 	}
 	
 	
-	public ArrayList<BoardDTO> getSearch(String searchType, String search) {
+	public ArrayList<BoardDTO> getSearch(String searchField, String search) {
 		ArrayList<BoardDTO> boardList = new ArrayList<BoardDTO>();
-		String sql = "select * from board where "+searchType.trim();
+		String sql = "select * from board where "+searchField.trim();
 
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		BoardDTO boardDTO =null;
+		
 		try {
+			
+			con=getConnection();
+			
 			if(search !=null && !search.equals("")) {
-				sql += "like '%"+search.trim()+"%' order by num desc";
+				sql += " like '%"+search.trim()+"%' order by num desc";
+				
+			}	
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
-			}	
+			
 				while(rs.next()) {
+					BoardDTO boardDTO = new BoardDTO();
 					boardDTO.setNum(rs.getInt("num"));
-					boardDTO.setPass(rs.getString("pass"));
 					boardDTO.setName(rs.getString("name"));
+					boardDTO.setPass(rs.getString("pass"));
 					boardDTO.setSubject(rs.getString("subject"));
 					boardDTO.setContent(rs.getString("content"));
 					boardDTO.setReadcount(rs.getInt("readcount"));
 					boardDTO.setDate(rs.getTimestamp("date"));
 					
 					boardDTO.setFile(rs.getString("file"));
-					
 					boardList.add(boardDTO);
 					
 				}
