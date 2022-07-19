@@ -19,9 +19,9 @@
 How many a man has dated a new era in his life from the reading of a book. <br>
 by Henry David Thoreau. </p>
 <form action="../Category/MovieAc.jsp" id="notice" name="fr" method="get">
-  <div>
-	  
-  </div>
+ <div>
+		  
+ </div>
 <input type="submit" value="WATCH MORE" id="noticebtn">  
 </form>
 

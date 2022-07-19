@@ -9,6 +9,25 @@
 <link rel="stylesheet" href="../css/style2.css">
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+
+.gallery_list {
+width: 230px;
+height: 274px;
+background: #f7f7f7;
+padding: 9px 9px 9px 9px;
+border: 3px solid #fff;
+}
+
+.gallery {
+list-style: none;
+} 
+
+td {
+font-size: 14px;
+}
+
+</style>
 </head>
 <body>
 <jsp:include page="../inc/Top.jsp"></jsp:include>
@@ -52,18 +71,11 @@
 	%>
 	<article>
 		<h1>자료실</h1>
+		<tbody>
 		<table class="table">
-		  <thead class="table_bar">
-			<tr>
-				<th scope="col" class="tno">No.</th>
-				<th scope="col" class="ttitle">Title</th>
-				<th scope="col" class="twrite">Writer</th>
-				<th scope="col" class="tdate">Date</th>
-				<th scope="col" class="tread">Read</th>
-			</tr>
-			</thead>
-  			<tr>
-  <%
+	
+  	<tr>
+  	  <%
    //날짜 => 문자열 모양변경
    SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
    
@@ -72,13 +84,16 @@
 	   %>
 
 	<td>
-	<%=i+1 %><br>
-	 <a href="gcontent.jsp?num=<%=boardDTO.getNum()%>">
-	 <img src="../upload/<%=boardDTO.getFile()%>" width="150" height="150"></a>
-	 <br>
-	  <%=boardDTO.getSubject() %>
-	  <%=boardDTO.getName() %>
-	  <%=dateFormat.format(boardDTO.getDate()) %>
+	 <div class="gallery_list">
+	  <ul class="gallery">
+	   <li><%=i+1 %></li>
+	   <li><a href="gcontent.jsp?num=<%=boardDTO.getNum()%>">
+	       <img src="../upload/<%=boardDTO.getFile()%>" width="150" height="150"></a></li>
+	   <li><%=boardDTO.getSubject()%></li>
+	   <li><%=boardDTO.getName() %></li>
+	   <li><%=dateFormat.format(boardDTO.getDate())%></li>
+	  </ul>
+	 </div> 
 	</td>
 	<%
 		if((i+1)%4 == 0){
