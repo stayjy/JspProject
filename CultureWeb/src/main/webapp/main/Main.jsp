@@ -18,7 +18,13 @@
  <p>영화, 드라마, 운동 일상 생활의 기록을 남기는 공간 <br>
 How many a man has dated a new era in his life from the reading of a book. <br>
 by Henry David Thoreau. </p>
-<button>WATCH MORE</button>
+<form action="../Category/MovieAc.jsp" id="notice" name="fr" method="get">
+  <div>
+	  
+  </div>
+<input type="submit" value="WATCH MORE" id="noticebtn">  
+</form>
+
 </div>
 </div> 
 <!-- <section class="wrapper">

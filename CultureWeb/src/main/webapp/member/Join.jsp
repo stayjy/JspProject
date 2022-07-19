@@ -165,17 +165,17 @@
 <body>
 	<div class="container">
 
-		<form action="JoinPro.jsp" id="join" method="post" name="fr" > <!-- onsubmit="return checkSubmit()" -->
+		<form action="JoinPro.jsp" id="join" method="post" name="fr" onsubmit="return checkSubmit()"> <!-- onsubmit="return checkSubmit()" -->
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>
 				<!-- <form class="validation-form" novalidate> -->
 					<div class="row">
 						<div class="mb-3">
+						
 							<label for="name">아이디</label>
-							<input type="text" class="form-control" name="id" placeholder="" value="" required> <br>
-							<label><div id="dupdiv"></div></label><br><br>
-							<input type="button" value="중복확인" style="padding: 4px 6px;" class="btn" ><br>  <!-- onclick="winopen()" -->
-							
+							<input type="text" class="form-control" name="id" placeholder="" id="id" required> <br>
+							<label><div id="dupdiv"></div></label><br>
+						<!-- 	<input type="button" value="중복확인" style="padding: 4px 6px;" class="btn" ><br> -->  <!-- onclick="winopen()" -->
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 							
 							
@@ -226,7 +226,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		//class="dup" 클릭했을 때
-		$('.btn').click(function(){
+		$('#id').blur(function(){
 			//alert("클릭");
 			//dupCheck2.jsp class="id" val()을 들고 가서 아이디 중복테크 하고
 			// 그 결과를 가져와서 id="dupdiv" 내용 변경

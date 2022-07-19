@@ -35,7 +35,9 @@
 	font-size: 22px;
 }
 
-.container .hero button{
+
+
+#notice #noticebtn {
 	background: none;
 	border: 2px solid darkseagreen;
 	color: white;
@@ -47,9 +49,10 @@
 	transition: all .4s;
 }
 
-.container .hero button:hover{
+#notice #noticebtn:hover{
 	background-color: darkslategray;
 }
+
 
 #login {
 	text-decoration: none;
